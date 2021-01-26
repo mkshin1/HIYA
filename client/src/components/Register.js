@@ -12,22 +12,24 @@ const RegisterForm = (props) => {
   const [password, setPassword] = useState(props.password);
   const [confirmpw, setConfirmPw] = useState(props.confirmpw);
   const [errors, setErrors] = useState([]);
+  const [register, setRegister] = useState(false);
 
   const handleSubmit = e => {
     e.preventDefault();
 
     setErrors([])
 
-    axios.[props.method](props.url, {
+    axios.post(props.url, {
       firstName,
       lastName,
       email,
       password,
       confirmpw
-    })
+    }, {withCredentials: true})
       .then(res => {
-        console.log('Response: ', res.data)
+        // once done registering, navigate back to root
         navigate('/')
+        setRegister(true)
       })
       .catch(err => {
         const errorResponse = err.response.data.errors;
@@ -45,7 +47,7 @@ const RegisterForm = (props) => {
   return(
     <div>
 
-      <form  noValidate autoComplete="off" className="register-form">
+      <form noValidate autoComplete="off" className="register-form">
           <div>
           
           <TextField id="outlined-basic" label="First Name" variant="outlined" />
@@ -66,8 +68,11 @@ const RegisterForm = (props) => {
         
       </form>
 
+      <>
+      {register ? <h3>Please login!</h3> : null}
+      </>
 
-      <form >
+      <form onSubmit={handleSubmit}>
         <p>
           <label>First Name:</label>
           <input type="text" value={firstName} onChange={ (e) => setFirstName(e.target.value) } />

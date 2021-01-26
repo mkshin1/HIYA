@@ -1,4 +1,5 @@
 import React, {useState, useEffect} from 'react'
+import {navigate} from '@reach/router'
 import TextField from "@material-ui/core/TextField"
 import Button from "@material-ui/core/Button"
 import FormControl from '@material-ui/core/FormControl'
@@ -32,8 +33,18 @@ function Post() {
             title: title,
             body:post
         })
-        .then(res => console.log(res))
-        .catch(err => console.log(err))
+        .then(() => navigate("/home"))
+        .catch(err => {
+            const errorResponse = err.response.data.errors;
+            const errorArr = [];
+            for (const key of Object.keys(errorResponse)) {
+              errorArr.push(errorResponse[key].message)
+            }
+            setErrors(errors)
+      })
+
+        setPost("")
+        setTitle("")
     }
 
 

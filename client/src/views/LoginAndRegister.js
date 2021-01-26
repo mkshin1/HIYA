@@ -21,14 +21,14 @@ const loginAndRegister = (props) => {
         <h1>Register</h1>
       </header>
 
-      {/* <LoginForm 
-        method = "post"
+      <LoginForm 
+        url = "http://localhost:8000/api/user/login"
         email = ""
         password = ""
-      /> */}
+      />
 
       <RegisterForm
-        method = "post"
+        url = "http://localhost:8000/api/user/register"
         firstName = ""
         lastName = ""
         email = ""

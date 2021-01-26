@@ -15,14 +15,14 @@ const LoginForm = (props) => {
 
     setErrors([])
 
-    axios.[props.method](props.url, {
+    axios.post(props.url, {
       email,
       password,
       confirmpw
-    })
+    }, {withCredentials: true})
       .then(res => {
         console.log('Response: ', res.data)
-        navigate('/')
+        navigate('/home')
       })
       .catch(err => {
         const errorResponse = err.response.data.errors;
