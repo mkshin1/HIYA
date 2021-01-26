@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import axios from 'axios';
 import {navigate} from '@reach/router';
 import TextField from '@material-ui/core/TextField';
@@ -6,32 +6,37 @@ import Button from "@material-ui/core/Button"
 import "../App.css"
 
 const RegisterForm = (props) => {
-  const [firstName, setFirstName] = useState(props.firstName);
-  const [lastName, setLastName] = useState(props.lastName);
-  const [email, setEmail] = useState(props.email);
-  const [password, setPassword] = useState(props.password);
-  const [confirmpw, setConfirmPw] = useState(props.confirmpw);
   const [errors, setErrors] = useState([]);
   const [register, setRegister] = useState(false);
+
+  const [user,setUser] = useState({
+    firstName: '',
+    lastName: "",
+    email: "",
+    password: "",
+    confirmpw: "",
+    ...props.user
+  });
+
+  const changeUser = (key, value) => {
+    let state = {...user};
+    state[key] = value;
+    setUser(state)
+  }
 
   const handleSubmit = e => {
     e.preventDefault();
 
     setErrors([])
 
-    axios.post(props.url, {
-      firstName,
-      lastName,
-      email,
-      password,
-      confirmpw
-    }, {withCredentials: true})
+    axios.post(props.url, user)
       .then(res => {
         // once done registering, navigate back to root
         navigate('/')
         setRegister(true)
       })
       .catch(err => {
+        console.log("ERRORS", JSON.stringify(err))
         const errorResponse = err.response.data.errors;
         const errorArr = [];
         for (const key of Object.keys(errorResponse)) {
@@ -41,15 +46,15 @@ const RegisterForm = (props) => {
         console.log(err.response.data)
       })
   }
-  
 
-  
+
+
   return(
     <div>
 
       <form noValidate autoComplete="off" className="register-form">
           <div>
-          
+
           <TextField id="outlined-basic" label="First Name" variant="outlined" />
           </div>
           <div>
@@ -65,7 +70,7 @@ const RegisterForm = (props) => {
           <div>
           <Button variant="contained" color="primary">Login</Button>
         </div>
-        
+
       </form>
 
       <>
@@ -75,23 +80,23 @@ const RegisterForm = (props) => {
       <form onSubmit={handleSubmit}>
         <p>
           <label>First Name:</label>
-          <input type="text" value={firstName} onChange={ (e) => setFirstName(e.target.value) } />
+          <input type="text" value={user.firstName} onChange={ (e) => changeUser("firstName", e.target.value) } />
         </p>
         <p>
           <label>Last Name:</label>
-          <input type="text" value={lastName} onChange={ (e) => setLastName(e.target.value) } />
+          <input type="text" value={user.lastName} onChange={ (e) => changeUser("lastName", e.target.value) } />
         </p>
         <p>
           <label>Email:</label>
-          <input type="text" value={email} onChange={ (e) => setEmail(e.target.value) } />
+          <input type="text" value={user.email} onChange={ (e) => changeUser("email", e.target.value) } />
         </p>
         <p>
           <label>Password:</label>
-          <input type="text" value={password} onChange={ (e) => setPassword(e.target.value) } />
+          <input type="text" value={user.password} onChange={ (e) => changeUser("password", e.target.value) } />
         </p>
         <p>
           <label>Confirm Password:</label>
-          <input type="text" value={confirmpw} onChange={ (e) => setConfirmPw(e.target.value) } />
+          <input type="text" value={user.confirmpw} onChange={ (e) => changeUser("confirmpw", e.target.value) } />
         </p>
         <input type="submit" value="Login"/>
 

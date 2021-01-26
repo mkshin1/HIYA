@@ -39,13 +39,13 @@ const UserSchema = new mongoose.Schema({
 
 
 // allows us to compare password with it
-UserSchema.virtual('confirmPassword')
-.get( () => this._confirmPassword )
-.set( value => this._confirmPassword = value );
+UserSchema.virtual('confirmpw')
+.get( () => this.confirmpw )
+.set( value => this.confirmpw = value );
 
 // extra check to compare input pw with confirmed pw
 UserSchema.pre('validate', function(next) {
-  if (this.password !== this.confirmPassword) {
+  if (this.password !== this.confirmpw) {
     this.invalidate('confirmPassword', 'Password must match confirm password');
   }
   next();
