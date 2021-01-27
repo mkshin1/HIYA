@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import axios from 'axios';
 import {navigate} from '@reach/router';
+import FormControl from '@material-ui/core/FormControl';
 import TextField from '@material-ui/core/TextField';
 import Button from "@material-ui/core/Button"
 import "../App.css"
@@ -85,28 +86,28 @@ const RegisterForm = (props) => {
 
       <form onSubmit={handleSubmit}>
         <p>
-          <label>First Name:</label>
-          <input type="text" value={user.firstName} onChange={ (e) => changeUser("firstName", e.target.value) } />
+          {/* <label>First Name:</label> */}
+          <input type="text" className="registerForm-inputField" placeholder="First Name" value={user.firstName} onChange={ (e) => changeUser("firstName", e.target.value) } />
         </p>
         <p>
-          <label>Last Name:</label>
-          <input type="text" value={user.lastName} onChange={ (e) => changeUser("lastName", e.target.value) } />
+          {/* <label>Last Name:</label> */}
+          <input type="text" className="registerForm-inputField" placeholder="Last Name"value={user.lastName} onChange={ (e) => changeUser("lastName", e.target.value) } />
         </p>
         <p>
-          <label>Email:</label>
-          <input type="text" value={user.email} onChange={ (e) => changeUser("email", e.target.value) } />
+          {/* <label>Email:</label> */}
+          <input type="text" className="registerForm-inputField" placeholder="Email" value={user.email} onChange={ (e) => changeUser("email", e.target.value) } />
         </p>
         <p>
-          <label>Password:</label>
-          <input type="text" value={user.password} onChange={ (e) => changeUser("password", e.target.value) } />
+          {/* <label>Password:</label> */}
+          <input type="text" className="registerForm-inputField" placeholder="Create A Password" value={user.password} onChange={ (e) => changeUser("password", e.target.value) } />
         </p>
         <p>
-          <label>Confirm Password:</label>
-          <input type="text" value={user.confirmpw} onChange={ (e) => changeUser("confirmpw", e.target.value) } />
+          {/* <label>Confirm Password:</label> */}
+          <input type="text" className="registerForm-inputField" placeholder="Confirm Your Password" value={user.confirmpw} onChange={ (e) => changeUser("confirmpw", e.target.value) } />
         </p>
-        <Button variant="contained" color="primary" type="submit">
-          Register
-        </Button>
+        <button className="register-btn" type="submit">
+          Join Hiya
+        </button>
 
         {errors.map( (err, index) => <h3 className="errors" key={index}> {err}</h3>)}
 
