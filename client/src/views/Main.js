@@ -1,16 +1,25 @@
 import React from 'react'
 import Post from "../components/Post"
 import SearchAppBar from "../components/SearchAppBar"
-import Feed from "../components/Feed"
+
 import Sidebar from "../components/Sidebar"
+import Feed from "../components/Feed"
+import "../Main.css"
+
 
 function Main() {
     return (
         <div>
             <SearchAppBar />
-            <Post />
-            <Feed />
-            <Sidebar />
+
+            <div className="main">
+                <Sidebar />
+                <Feed />
+
+            </div>
+
+
+
         </div>
     )
 }

@@ -49,7 +49,7 @@ function Post() {
 
 
     return (
-        <div>
+        <div className="post">
             
                     <TextField
                     label="Make a Post"
