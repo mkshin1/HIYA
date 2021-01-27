@@ -9,7 +9,7 @@ import SearchAppBar from "../components/SearchAppBar"
 // import Variants from "../components/Variants"
 
 
-const loginAndRegister = (props) => {
+const LoginAndRegister = (props) => {
 
   return (
     <div>
@@ -25,4 +25,4 @@ const loginAndRegister = (props) => {
   );
 };
 
-export default loginAndRegister;
+export default LoginAndRegister;
