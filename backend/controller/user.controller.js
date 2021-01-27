@@ -23,14 +23,22 @@ module.exports.registerUser = (req, res) => {
             id: user._id
         }, process.env.SECRET_KEY);
 
-        res
-            .cookie("usertoken", userToken, secret, {
+        res.status(200)
+            .cookie("usertoken", userToken, process.env.SECRET_KEY, {
                 httpOnly: true
             })
             .json({ msg: "success!", user: user });
             // return user._id
     })
-    .catch(err => res.json(err))
+    .catch(err => {
+        if (err.errors) {
+            res.status(400).json(err)
+        } else {
+            res.status(400).json({
+                message: err.message,
+            })
+        }
+    })
 }
 
 module.exports.deleteUser = (req, res) => {
