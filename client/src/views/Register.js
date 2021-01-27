@@ -1,15 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import { Link, navigate } from '@reach/router';
 import axios from 'axios';
-import LoginForm from '../components/LoginForm';
-// import RegisterForm from '../components/Register';
+import RegisterForm from '../components/RegisterForm';
 
 import SearchAppBar from "../components/SearchAppBar"
 // import Container from "../components/Container"
 // import Variants from "../components/Variants"
 
-// Login Page
-const Login = (props) => {
+
+// register page
+const Register = (props) => {
 
   return (
     <div>
@@ -17,17 +17,11 @@ const Login = (props) => {
 
       <header>
         <h1>Hiya!!</h1>
-        {/* navbar? */}
       </header>
 
-      <div>
-        <h1>Welcome Back Ninja!</h1>
-
-        <LoginForm />
-      </div>
-
+      <RegisterForm />
     </div>
   );
 };
 
-export default Login;
+export default Register;

@@ -1,8 +1,8 @@
 import React from 'react';
 import Main from './views/Main';
 import Post from './components/Post';
-import Login from './components/Login';
-import Register from './components/Register';
+import LoginForm from './components/LoginForm';
+import RegisterForm from './components/RegisterForm';
 import LoginAndRegister from "./views/LoginAndRegister"
 import {Router} from "@reach/router"
 
@@ -13,19 +13,19 @@ function App() {
     <div className="App">
       <Router>
 
-        <Main path="/home"> 
+        <Main path="/home">
           <SearchAppBar />
           <Post />
         </Main>
 
         <LoginAndRegister path="/">
           <SearchAppBar />
-          <Login />
-          <Register />
+          <Login path="/login"/> // takes us to login page
+          <Register /> // takes us to register page, which is the root
         </LoginAndRegister>
 
       </Router>
-      
+
     </div>
   );
 }
