@@ -25,19 +25,24 @@ const RegisterForm = (props) => {
   }
 
   const handleSubmit = e => {
+    console.log('this is from handle submit')
     e.preventDefault();
 
     setErrors([])
 
-    axios.post(props.url, user)
+    axios.post("http://localhost:8000/api/user/register", user, {
+      withCredentials: true,
+      headers: {'Access-Control-Allow-Origin': '*', 'Content-Type': 'application/json'}})
       .then(res => {
         // once done registering, navigate back to root
         navigate('/')
         setRegister(true)
+        console.log('user: ', user)
+        console.log('Response: ', res)
       })
       .catch(err => {
-        console.log("ERRORS", JSON.stringify(err))
-        const errorResponse = err.response.data.errors;
+        // console.log("ERRORS", JSON.stringify(err))
+        const errorResponse = err.response.data;
         const errorArr = [];
         for (const key of Object.keys(errorResponse)) {
           errorArr.push(errorResponse[key].message)
@@ -52,7 +57,7 @@ const RegisterForm = (props) => {
   return(
     <div>
 
-      <form noValidate autoComplete="off" className="register-form">
+      {/* <form noValidate autoComplete="off" className="register-form">
           <div>
 
           <TextField id="outlined-basic" label="First Name" variant="outlined" />
@@ -71,7 +76,7 @@ const RegisterForm = (props) => {
           <Button variant="contained" color="primary">Login</Button>
         </div>
 
-      </form>
+      </form> */}
 
       <>
       {register ? <h3>Please login!</h3> : null}
@@ -98,7 +103,9 @@ const RegisterForm = (props) => {
           <label>Confirm Password:</label>
           <input type="text" value={user.confirmpw} onChange={ (e) => changeUser("confirmpw", e.target.value) } />
         </p>
-        <input type="submit" value="Login"/>
+        <Button variant="contained" color="primary" type="submit">
+          Register
+        </Button>
 
         {errors.map( (err, index) => <h3 className="errors" key={index}> {err}</h3>)}
 

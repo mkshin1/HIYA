@@ -13,23 +13,14 @@ const loginAndRegister = (props) => {
 
   return (
     <div>
-      <SearchAppBar />
-
-
+      {/* <SearchAppBar /> */}
 
       <header>
-        <h1>Register</h1>
+        <h1>Hiya!!</h1>
       </header>
 
-      <LoginForm
-        url = "http://localhost:8000/api/user/login"
-        email = ""
-        password = ""
-      />
-
-      <RegisterForm
-        url = "http://localhost:8000/api/user/register"
-      />
+      <LoginForm />
+      <RegisterForm />
     </div>
   );
 };
