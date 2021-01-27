@@ -37,18 +37,19 @@ const RegisterForm = (props) => {
         // once done registering, navigate back to root
         navigate('/')
         setRegister(true)
-        console.log('user: ', user)
-        console.log('Response: ', res)
       })
       .catch(err => {
         // console.log("ERRORS", JSON.stringify(err))
-        const errorResponse = err.response.data;
         const errorArr = [];
-        for (const key of Object.keys(errorResponse)) {
-          errorArr.push(errorResponse[key].message)
+        const errorData = err.response.data
+        errorArr.push(errorData.message);
+        if (errorData.errors) {
+          const errorResponse = errorData.errors;
+          for (const key of Object.keys(errorResponse)) {
+            errorArr.push(errorResponse[key].message)
+          }
         }
         setErrors(errorArr);
-        console.log(err.response.data)
       })
   }
 
