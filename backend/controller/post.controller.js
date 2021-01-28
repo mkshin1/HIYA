@@ -2,14 +2,24 @@ const Post = require("../models/post.model");
 const Comment = require('../models/comment.model');
 
   module.exports.findAllPosts = (req, res) => {
-    Post.find().populate("comments")
+    Post.find().populate({
+      path: "comments",
+      model: 'Comment'
+    })
     .then(eachPost => res.json(eachPost))
     .catch(err => res.json({message: "there is an error here"}))
   }
 
   module.exports.findOnePost = (req, res) => {
+
     Post.findOne({_id: req.params.id})
-    .then(onePost => res.json(onePost))
+    .populate({
+      path: "comments",
+      model: "Comment",
+    })
+    .then(async onePost => {
+      return res.json(onePost)
+    })
     .catch(err => res.json({message: "there is an error here"}))
   }
 
