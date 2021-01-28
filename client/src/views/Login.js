@@ -16,13 +16,14 @@ const Login = (props) => {
     <div>
       {/* <SearchAppBar /> */}
 
-      <header>
-        <div><h1>Hiya!!</h1></div>
-        {/* navbar? */}
+      <header onClick={ (e) => navigate("/")}>
+        <div className="left-header"><h1>Hiya!!</h1></div>
+          <div></div>
+          <div></div>
       </header>
 
-      <div>
-        <h1>Welcome Back Ninja!</h1>
+      <div className="login-form-div">
+        <h1 className="login-title">Welcome Back Ninja!</h1>
         <LoginForm />
       </div>
 

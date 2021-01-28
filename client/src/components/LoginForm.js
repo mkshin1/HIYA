@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import axios from 'axios';
 import {navigate} from '@reach/router';
 import Button from '@material-ui/core/Button';
+import "../LoginView.css"
 
 
 const LoginForm = (props) => {
@@ -38,33 +39,41 @@ const LoginForm = (props) => {
       })
       .catch(err => {
         // console.log("ERRORS", JSON.stringify(err.response))
-        console.log("ERRORS", err.response.data)
-        const errorResponse = err.response.data;
+        // console.log("ERRORS", err.response.data)
+        // const errorResponse = err.response.data;
+        // const errorArr = [];
+        // for (const key of Object.keys(errorResponse)) {
+        //   errorArr.push(errorResponse[key].message)
+        // }
+        // setErrors(errorArr);
+        // console.log(err.response.data)
         const errorArr = [];
-        for (const key of Object.keys(errorResponse)) {
-          errorArr.push(errorResponse[key].message)
+        const errorData = err.response.data
+        errorArr.push(errorData.message);
+        if (errorData.errors) {
+          const errorResponse = errorData.errors;
+          for (const key of Object.keys(errorResponse)) {
+            errorArr.push(errorResponse[key].message)
+          }
         }
         setErrors(errorArr);
-        console.log(err.response.data)
       })
   }
 
 
   return(
     <div>
-      <form onSubmit={handleSubmit} >
+      <form onSubmit={handleSubmit} className="login-form-div">
         <p>
-          <label>Email:</label>
-          <input type="text" value={user.email} onChange={ (e) => changeUserLogin("email", e.target.value) } />
+          {/* <label>Email:</label> */}
+          <input type="text" className="registerForm-inputField" placeholder="Email Address" value={user.email} onChange={ (e) => changeUserLogin("email", e.target.value) } />
         </p>
         <p>
-          <label>Password:</label>
-          <input type="text" value={user.password} onChange={ (e) => changeUserLogin("password", e.target.value) } />
+          {/* <label>Password:</label> */}
+          <input type="text" className="registerForm-inputField" placeholder="Password" value={user.password} onChange={ (e) => changeUserLogin("password", e.target.value) } />
         </p>
-        {/* <Button variant="contained" color="primary" type="submit">
-          Login
-        </Button> */}
-        <input type="submit" value="login"/>
+        <button className="login-btn" type="submit">Log In</button>
+
 
         {errors.map( (err, index) => <h3 className="errors" key={index}> {err}</h3>)}
 
