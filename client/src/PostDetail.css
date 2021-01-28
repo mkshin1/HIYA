@@ -1,8 +1,86 @@
+*{
+  box-sizing: border-box;
+}
+
 .post-detail-container{
   display: flex;
   flex-direction: column;
-  /* align-items: center; */
+  align-items: center;
   justify-content: center;
   align-content: center;
   margin-left: 30px;
+}
+
+.post-top{
+  /* display: flex;
+  flex-direction: row;
+  justify-content: space-between; */
+  width: 50%
+}
+
+.post-arrow{
+  color: #4125c0;
+}
+
+.post-main{
+  width: 50%;
+  border: 1px solid #4125c0;
+  padding-left: 18px;
+  margin-bottom: 5px;
+}
+
+.post-data{
+  width: 50%;
+  border: 1px solid #4125c0;
+  padding: 25px 15px;
+  margin-bottom: 5px;
+  height: 35px;
+  display:flex;
+  flex-direction: row;
+  align-items: center;
+
+}
+
+.post-data div {
+  display: inline;
+}
+  .heart-icon{
+    margin-right: 5px;
+    color: #4125c0;
+  }
+
+  .edit-link{
+    margin-left: 20px;
+    text-decoration: none;
+    font-weight: bold;
+    color: #4125c0
+  }
+
+  .delete-link{
+    margin-left: 20px;
+    font-weight: bold;
+    color: #4125c0
+  }
+
+.post-comments{
+  width: 50%;
+  border: 1px solid #4125c0;
+  /* margin-bottom: 3px; */
+  /* padding-right: 18px; */
+  margin-left: 31px;
+  margin-right: 31px;
+  margin-bottom: 3px;
+}
+
+.single-post{
+  width: 100%;
+  border-bottom: 1px solid #4125c0;
+  margin-bottom: 3px;
+  padding: 0 15px;
+
+  /* border-right: 1px solid #4125c0;
+  border-left: 1px solid #4125c0; */
+}
+.single-post:last-child {
+  border-bottom: none;
 }
