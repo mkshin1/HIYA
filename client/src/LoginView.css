@@ -1,0 +1,83 @@
+header{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  background-color: #4125c0;
+}
+
+  .left-header{
+    margin-left: 20px;
+    color: white;
+  }
+
+  .right-header{
+    margin-right: 20px;
+  }
+
+  .login-message{
+    color:rgb(116 232 116);
+    text-align: center;
+  }
+
+.login-link{
+  text-decoration: none;
+  color: white;
+  font-weight: bold;
+  font-size: 16px;
+}
+
+.login-link:hover{
+  text-decoration: none;
+  color: #66eec5;
+  font-weight: bold;
+  font-size: 16px;
+}
+
+.login-form-div{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.loginForm-inputField{
+  height: 45px;
+  width: 150px;
+  font-size: 15px;
+}
+
+.login-btn{
+  width: 100px;
+  height: 40px;
+  background-color: #4125c0;
+  border: 1px solid #4125c0;
+  border-radius: 25px;
+  margin-top: 21px;
+  color: white;
+  font-weight: bold;
+  font-size: 16px;
+}
+
+.login-btn:hover{
+  width: 100px;
+  height: 40px;
+  background-color: white;
+  border: 1px solid #4125c0;
+  border-radius: 25px;
+  margin-top: 21px;
+  color:  #4125c0;
+  font-weight: bold;
+  font-size: 16px;
+}
+
+.login-title{
+  font-size: 35px;
+  font-family: "Century Gothic";
+}
+
+.registerForm-inputField{
+  height: 50px;
+  width: 300px;
+  font-size: 16px;
+  font-family: "Century Gothic";
+}

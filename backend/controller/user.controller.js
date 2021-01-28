@@ -36,6 +36,7 @@ module.exports.registerUser = (req, res) => {
         } else {
             res.status(400).json({
                 message: err.message,
+                // err.message
             })
         }
     })
@@ -50,7 +51,7 @@ module.exports.deleteUser = (req, res) => {
 
 module.exports.loginUser = async (req, res) => {
 
-    const errorMessage = "Email or password is incorrect";
+    const errorMessage = "Oops! Email or password is incorrect.";
 
     try {
         const user = await User.findOne({email: req.body.email});

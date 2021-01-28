@@ -20,12 +20,12 @@ const Register = (props) => {
         <div className="left-header"><h1>Hiya!!</h1></div>
         <div></div>
         <div className="right-header">
-          <button className="login-btn"><Link to="/" className="login-link">Log In</Link></button>
+          <button className="login-btn" onClick={(e) => navigate("/login")}>Log In</button>
         </div>
       </header>
 
-      <div className="register-form-div">
-        <h1>Join Hiya!</h1>
+      <div className="register-form-container">
+        <h1 className="register-form-header">Join Hiya!</h1>
         <RegisterForm />
       </div>
     </div>

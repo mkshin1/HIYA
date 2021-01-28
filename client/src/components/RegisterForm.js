@@ -4,6 +4,7 @@ import {navigate} from '@reach/router';
 import FormControl from '@material-ui/core/FormControl';
 import TextField from '@material-ui/core/TextField';
 import Button from "@material-ui/core/Button"
+import "../RegisterView.css"
 import "../App.css"
 
 const RegisterForm = (props) => {
@@ -57,7 +58,7 @@ const RegisterForm = (props) => {
 
 
   return(
-    <div>
+    <div className="register-form-holder">
 
       {/* <form noValidate autoComplete="off" className="register-form">
           <div>
@@ -81,10 +82,10 @@ const RegisterForm = (props) => {
       </form> */}
 
       <>
-      {register ? <h3>Please login!</h3> : null}
+      {register ? <h3 className="login-message">Please login</h3> : null}
       </>
 
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} className="register-form-div">
         <p>
           {/* <label>First Name:</label> */}
           <input type="text" className="registerForm-inputField" placeholder="First Name" value={user.firstName} onChange={ (e) => changeUser("firstName", e.target.value) } />
@@ -99,19 +100,22 @@ const RegisterForm = (props) => {
         </p>
         <p>
           {/* <label>Password:</label> */}
-          <input type="text" className="registerForm-inputField" placeholder="Create A Password" value={user.password} onChange={ (e) => changeUser("password", e.target.value) } />
+          <input type="text" className="registerForm-inputField" placeholder="Create Password" value={user.password} onChange={ (e) => changeUser("password", e.target.value) } />
         </p>
         <p>
           {/* <label>Confirm Password:</label> */}
-          <input type="text" className="registerForm-inputField" placeholder="Confirm Your Password" value={user.confirmpw} onChange={ (e) => changeUser("confirmpw", e.target.value) } />
+          <input type="text" className="registerForm-inputField" placeholder="Confirm Password" value={user.confirmpw} onChange={ (e) => changeUser("confirmpw", e.target.value) } />
         </p>
-        <button className="register-btn" type="submit">
+        <button className="join-button" type="submit">
           Join Hiya
         </button>
 
-        {errors.map( (err, index) => <h3 className="errors" key={index}> {err}</h3>)}
-
       </form>
+
+      <div className="errors">
+        {errors.map( (err, index) => <h3 key={index}> {err}</h3>)}
+      </div>
+
     </div>
 
   );
