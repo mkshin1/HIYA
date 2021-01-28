@@ -14,8 +14,8 @@ function App() {
       <Router>
 
         <Main path="/home">
+          {/* <Post /> */}
           <SearchAppBar />
-          <Post />
         </Main>
 
         {/* <LoginAndRegister path="/"> */}

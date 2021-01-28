@@ -1,3 +1,61 @@
 .post {
   flex: 0.4;
+  padding-bottom: 10px;
+  /* border-bottom: 8px solid; */
+  padding-right: 10px;
+  width: 100%;
+}
+
+.textfield {
+  padding: 20px;
+  display: flex;
+  flex: 1;
+  margin-left: 20px;
+  font-size: 20px;
+  border: none;
+}
+
+/* .post-form {
+  display: inline-block;
+} */
+
+.eachPost {
+  padding-bottom: 10px;
+  /* border: 1px solid grey; */
+  width: 100%;
+  /* padding-right: 10px; */
+  margin-bottom: 30px;
+  margin-top: 30px;
+  /* cursor: pointer; */
+  min-height: fit-content;
+  min-width: fit-content;
+  font-size: 20px;
+  text-align: left;
+  align-items: center;
+  word-wrap: break-word;
+  /* display: inline-block; */
+  margin-left: 7px;
+  box-shadow: grey;
+  border-radius: 5px;
+  padding: 9px;
+  margin-left: 5px;
+  /* display: flex; */
+  background-color: #dae0e6;
+}
+
+.post-button {
+  padding: 20px;
+  display: flex;
+  /* flex: 1; */
+  margin-left: 20px;
+  font-size: 20px;
+  border: none;
+}
+
+.feed {
+  margin-top: 50px;
+}
+
+.eachPost > p {
+  cursor: pointer;
 }

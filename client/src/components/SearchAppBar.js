@@ -7,6 +7,7 @@ import InputBase from '@material-ui/core/InputBase';
 import { fade, makeStyles } from '@material-ui/core/styles';
 import MenuIcon from '@material-ui/icons/Menu';
 import SearchIcon from '@material-ui/icons/Search';
+import Button from "@material-ui/core/Button"
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -65,34 +66,39 @@ const useStyles = makeStyles((theme) => ({
 
 export default function SearchAppBar() {
   const classes = useStyles();
+  
 
   return (
     <div className={classes.root}>
       <AppBar position="static">
         <Toolbar>
-          <IconButton
+          {/* <IconButton
             edge="start"
             className={classes.menuButton}
             color="inherit"
             aria-label="open drawer"
           >
             <MenuIcon />
-          </IconButton>
-          <Typography className={classes.title} variant="h6" noWrap>
+          </IconButton> */}
+          <img src="https://cutecdn.codingdojo.com/new_design_image/onsite_bootcamp/coding-dojo-bootcamp-icon.png" style={{width:"40px", marginRight: "20px" }}></img>
+          <Typography className={classes.title} variant="h6" noWrap 
+          style={{fontWeight:"bold"}}
+          >
             Hiya Dojo
           </Typography>
           <div className={classes.search}>
-            <div className={classes.searchIcon}>
+            {/* <div className={classes.searchIcon}>
               <SearchIcon />
-            </div>
-            <InputBase
+            </div> */}
+            {/* <InputBase
               placeholder="Search…"
               classes={{
                 root: classes.inputRoot,
                 input: classes.inputInput,
               }}
               inputProps={{ 'aria-label': 'search' }}
-            />
+            /> */}
+            <Button style={{color:"white", fontWeight:"bold", backgroundColor:"none"}}>Sign Out</Button>
           </div>
         </Toolbar>
       </AppBar>
