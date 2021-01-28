@@ -2,14 +2,24 @@ const Post = require("../models/post.model");
 const Comment = require('../models/comment.model');
 
   module.exports.findAllPosts = (req, res) => {
-    Post.find().populate("comments")
+    Post.find().populate({
+      path: "comments",
+      model: 'Comment'
+    })
     .then(eachPost => res.json(eachPost))
     .catch(err => res.json({message: "there is an error here"}))
   }
 
   module.exports.findOnePost = (req, res) => {
+
     Post.findOne({_id: req.params.id})
-    .then(onePost => res.json(onePost))
+    .populate({
+      path: "comments",
+      model: "Comment",
+    })
+    .then(async onePost => {
+      return res.json(onePost)
+    })
     .catch(err => res.json({message: "there is an error here"}))
   }
 
@@ -21,13 +31,13 @@ const Comment = require('../models/comment.model');
 
   module.exports.updatePost = (req, res) => {
     Post.findOneAndUpdate({_id: req.params.id}, req.body, {
-      new: true, 
+      new: true,
       runValidators: true
     })
     .then(updatedPost => res.json(updatedPost))
     .catch(err => res.status(400).json(err))
   }
-  
+
   module.exports.deletePost = (request, response) => {
     Post.deleteOne({ _id: request.params.id })
     .then(() => response.json("deleted post!"))
@@ -52,7 +62,7 @@ const Comment = require('../models/comment.model');
 
 // use async, create comment & then update post
 module.exports.addComment = async (req, res) => {
-  
+
 // async / await
   try {
     // Create the comment and get the comment object that was created
