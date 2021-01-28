@@ -25,10 +25,10 @@ const UpdatePost = (props) => {
   const updatePost = (e) => {
     e.preventDefault();
 
-    axios.put('http://localhost:8000/api/post/' + id, {
-      title,
-      body,
-      imageUrl
+    axios.put('http://localhost:8000/api/post/' + id + '/update', {
+      title: title,
+      body: body,
+      imageUrl: imageUrl
     })
     .then(res => {
       console.log('Response: ', res.data)
@@ -40,33 +40,36 @@ const UpdatePost = (props) => {
   return(
     <div>
       <div className="upper-left-div">
-        <p ><Link to="/home" className="dashboard-link">Dashboard</Link></p>
+        <p><Link to="/home" className="dashboard-link">Dashboard</Link></p>
       </div>
       <div className="update-form-container">
         <h1>Whoops!</h1>
         <form onSubmit={updatePost}>
           <p>
-            <label>Title: </label>
+            <label><b>Title:</b> </label>
             <input
               type="text"
+              className= "updatePost-input-field"
               name="title"
               onChange={(e) => setTitle(e.target.value)}
               value={title}
             />
           </p>
           <p>
-            <label>Body: </label>
-            <input
+            <label><b>Body:</b> </label>
+            <textarea
               type="text"
+              className= "updatePostBody-input-field"
               name="body"
               onChange={(e) => setBody(e.target.value)}
               value={body}
             />
           </p>
           <p>
-            <label>Image URL: </label>
+            <label><b>Image URL:</b> </label>
             <input
               type="text"
+              className= "updatePost-input-field"
               name="imageUrl"
               onChange={(e) => setImageUrl(e.target.value)}
               value={imageUrl}

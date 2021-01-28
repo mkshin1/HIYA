@@ -8,6 +8,7 @@ import "../PostDetail.css"
 // Display a specific post, include comments
 const PostDetail = (props) => {
   const [post, setPost] = useState({});
+  const [allPosts, setAllPosts] = useState([])
 
   useEffect(() => {
     axios.get("http://localhost:8000/api/post/" + props.id)
@@ -22,8 +23,9 @@ const PostDetail = (props) => {
     console.log('Post ID was clicked: ', id);
     axios.delete("http://localhost:8000/api/post/" + id)
       .then(res => {
-        const filtered = post.filter(singlePost => singlePost._id != id)
-        setPost(filtered)
+        const filtered = allPosts.filter(singlePost => singlePost._id !== id)
+        setAllPosts(filtered)
+        navigate('/home')
       })
   }
 
@@ -39,17 +41,19 @@ const PostDetail = (props) => {
         </div>
 
         <div className="post-main">
-          <p>{post.author}</p>
+          {/* <p>{post.author}</p> */}
           <h3>{post.title}</h3>
           <h1>{post.body}</h1>
+          <div className="post-image" >
+            {post.imageUrl ? <img src={post.imageUrl}/> : null}
+          </div>
+
           <p>{post.date}</p>
-          {/* <p><Link to={`/post/${post._id}/update`}>Edit</Link></p> */}
         </div>
 
         <div className="post-data">
           <FavoriteBorder className="heart-icon"></FavoriteBorder>
           {post.meta?.likes}
-          {/* <p>Likes {post.meta?.likes}</p> */}
           <div>
             <Link
               to={`/post/${post._id}/update`}
@@ -66,16 +70,20 @@ const PostDetail = (props) => {
           </div>
         </div>
 
-        <div className="post-comments">
-          <div className="single-post">
-            <p>Post's Comments:</p>
-          </div>
-          {post.comments?.map((comment, idx) => {
-            return (<div key={idx} className="single-post">
-              <p>{comment.body}</p>
-            </div>)
-          })}
-        </div>
+        {post.comments ? (
+            <div className="post-comments">
+              <div className="single-post">
+                <p>Comments:</p>
+              </div>
+                {post.comments?.map((comment, idx) => {
+                  return (<div key={idx} className="single-post">
+                    <p>{comment.body}</p>
+                  </div>)
+                })}
+            </div>
+          ) : null
+        }
+
 
       </div>
 

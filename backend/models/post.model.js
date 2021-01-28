@@ -20,16 +20,14 @@ const PostSchema = new mongoose.Schema({
   },
   body: {
     type: String,
-    required: [
-      true,
-      "Post body is required."
-    ],
-    imageUrl: String,
+      required: [
+        true,
+        "Post body is required."
+      ],
+  },
+  imageUrl: {
+    type: String,
     trim: true,
-    minlength: [
-      3,
-      "Post body must be 3 characters long."
-    ]
   },
   comments:{
     type: [mongoose.Schema.Types.ObjectID],
