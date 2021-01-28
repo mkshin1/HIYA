@@ -16,8 +16,8 @@ function App() {
       <Router>
 
         <Main path="/home">
+          {/* <Post /> */}
           <SearchAppBar />
-          <Post />
         </Main>
           <PostDetail path="/post/:id" />
           <UpdatePost path="/post/:id/update" />

@@ -12,23 +12,25 @@ const PostSchema = new mongoose.Schema({
       3,
       "Post title must be 3 characters long"
     ]
-  },
+
+  }, 
   author: {
     type: mongoose.Schema.Types.ObjectID,
     ref: 'User', // will be JWT - tied to specific user
-    // default: null
-  },
+  }, 
   body: {
-    type: String,
-      required: [
-        true,
-        "Post body is required."
-      ],
+    type: String, 
+    required: [
+      true,
+      "Post body is required."
+    ],
   },
-  imageUrl: {
+  imageUrl: { 
     type: String,
     trim: true,
-  },
+    
+  }, 
+
   comments:{
     type: [mongoose.Schema.Types.ObjectID],
     ref: 'Comment' // tells Mongoose which model to populate documents from

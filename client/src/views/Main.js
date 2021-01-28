@@ -8,15 +8,20 @@ import "../Main.css"
 
 
 function Main() {
+
+    
     return (
         <div>
             <SearchAppBar />
+            <h2></h2>
 
             <div className="main">
                 <Sidebar />
+                <Post />
                 <Feed />
-
             </div>
+
+           
 
 
 
