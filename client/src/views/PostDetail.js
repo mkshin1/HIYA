@@ -9,7 +9,10 @@ const PostDetail = (props) => {
 
   useEffect(() => {
     axios.get("http://localhost:8000/api/post/" + props.id)
-    .then(res => setPost(res.data))
+    .then(res => {
+      console.log(res.data)
+      setPost({...res.data})
+    })
     .catch(err => console.log(err))
   }, [])
 
@@ -29,7 +32,7 @@ const PostDetail = (props) => {
         <p>Likes {post.meta?.likes}</p>
       </div>
       <div>
-        <p>Post's Comments:--- {post.comments}</p>
+        <p>Post's Comments:---</p>
         {post.comments?.map((comment, idx) => {
           return <div key={idx}>
             <p>{comment.body}</p>
