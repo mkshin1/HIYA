@@ -5,12 +5,19 @@ import Login from './views/Login';
 import Register from './views/Register';
 import PostDetail from './views/PostDetail';
 import UpdatePost from './views/UpdatePost';
+import axios from 'axios';
 // import LoginAndRegister from "./views/LoginAndRegister"
 import {Router} from "@reach/router"
 
 import SearchAppBar from "./components/SearchAppBar"
 
 function App() {
+  // const [logged, setLogged] = useState(false);
+
+  // useEffect(() => {
+  //   axios.get('http://localhost:8000/api/user/')
+  // })
+
   return (
     <div className="App">
       <Router>

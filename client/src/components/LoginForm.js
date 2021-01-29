@@ -8,10 +8,11 @@ import "../LoginView.css"
 const LoginForm = (props) => {
   // const [email, setEmail] = useState(props.email);
   // const [password, setPassword] = useState(props.password);
-  const [errors, setErrors] = useState([]);
-
+  // const [logged, setLogged] = useState(false);
   // console.log('Email from form: ', email)
   // console.log('Password from form: ', password)
+
+  const [errors, setErrors] = useState([]);
 
   const [user,setUser] = useState({
     email: "",
@@ -39,6 +40,8 @@ const LoginForm = (props) => {
         const lastNameInitial = res.data.user.lastName.charAt(0);
         // console.log("lastNameInitial: ", lastNameInitial)
         localStorage.setItem('userLastNameInitial', lastNameInitial)
+        // setLogged(res.data.user)
+        console.log('user from login form: ', res.data.user)
         navigate('/home')
       })
       .catch(err => {
@@ -50,6 +53,7 @@ const LoginForm = (props) => {
           const errorResponse = errorData.errors;
           for (const key of Object.keys(errorResponse)) {
             errorArr.push(errorResponse[key].message)
+            console.log("Email error :",errorResponse[key].message)
           }
         }
         setErrors(errorArr);
@@ -59,6 +63,7 @@ const LoginForm = (props) => {
 
   return(
     <div>
+
       <form onSubmit={handleSubmit} className="login-form-smaller-div">
         <p>
           {/* <label>Email:</label> */}

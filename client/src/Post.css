@@ -43,6 +43,17 @@
   background-color: #dae0e6;
 }
 
+.post-image-main{
+  position: relative;
+  margin-left: 34%;
+}
+
+.post-data-div{
+  display: flex;
+  flex-direction: row;
+  /* justify-content: spa; */
+}
+
 .post-button {
   padding: 20px;
   display: flex;

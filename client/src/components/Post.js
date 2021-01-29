@@ -18,7 +18,8 @@ function Post() {
     const [errors, setErrors] = useState("")
     const [results, setResults] = useState([])
     const [img, setImg] = useState("")
-
+    const [isLoggedIn, setIsLoggedIn] = useState(false);
+    const [activeUser, setActiveUser] = useState('');
 
 
     // const buttonStyle = {
@@ -32,6 +33,21 @@ function Post() {
         .then(res => setResults(res.data))
         .catch(err => console.log(err))
     }, [results])
+    // results will display likes in real time, results.likes will mess up network tab
+
+    // useEffect(() => {
+    //     const creatorName = localStorage.getItem("userFirstName") + " " + localStorage.getItem('userLastNameInitial');
+    //     console.log('creator name: ', creatorName)
+    //     const ID = localStorage.getItem("userID")
+
+    //     axios.get('http://localhost:8000/api/users')
+    //     .then(res => {
+    //         setActiveUser(res.data)
+    //         console.log('active user: ', activeUser)
+    //     })
+    //     .catch(err => console.log(err))
+    // }, [])
+
 
     const submitHandler = e => {
         const creatorName = localStorage.getItem("userFirstName") + " " + localStorage.getItem('userLastNameInitial');
@@ -45,7 +61,10 @@ function Post() {
             author: localStorage.getItem("userID"),
             creator: localStorage.getItem("userFirstName") + " " + localStorage.getItem('userLastNameInitial')
         })
-        .then(() => navigate("/home"))
+
+        .then(() => {
+            navigate("/home")
+        })
         .catch(err => {
             const errorResponse = err.response.data.errors;
             console.log(errorResponse)
@@ -130,6 +149,7 @@ function Post() {
 
                     onChange={e => setImg(e.target.value)}
                     placeholder="Want to share an image?"
+                    value={img}
                     style={{marginLeft: "380px", width: "230px"}}
                     ></Input>
 
@@ -159,33 +179,51 @@ function Post() {
                             className="eachPost"
                             >
                                 <Link
-                                style={{marginRight: "20px"}}
+                                style={{marginRight: "20px", marginLeft: "10px"}}
                                 to="/">&#128077;
                                 </Link>
 
-                                <p>{result.creator}</p>
+                                <p
+                                style={{marginLeft: "10px"}}>
+                                    {result.creator}
+                                </p>
 
                                 <p
                                 onClick={e => navigate(`/post/${result._id}`)}
-                                style={{wordWrap:"break-word"}}>{result.title}
+                                style={{wordWrap:"break-word", marginLeft: "10px"}}>{result.title}
                                 </p>
 
-                                {/* Like Button  */}
-                                <FavoriteBorder className="heart-icon"
-                                    onClick={(e) => likePost(result._id)}>
+                                <img src={result.imageUrl} className="post-image-main"/>
 
-                                </FavoriteBorder>
-                                {result.likes}
+                                <div className="post-data-div">
+                                    {/* Like Button  */}
+                                    <FavoriteBorder
+                                        className="heart-icon"
+                                        style={{
+                                            marginLeft:"20px"}}
+                                        onClick={(e) => likePost(result._id)}>
 
-                                <Link
-                                style={{marginRight:"10px"}}
-                                to={`/post/${result._id}/update`}>&#x270E;
-                                </Link>
+                                    </FavoriteBorder>
+                                    {result.likes}
 
-                                <Link
-                                onClick={e => deleteHandler(result._id)}
-                                to="/home">&#128465;
-                                </Link>
+                                    <Link
+                                    style={{
+                                        marginRight:"15px",
+                                        marginLeft:"20px", textDecoration:"none"}}
+                                    to={`/post/${result._id}/update`}>&#x270E;
+                                    </Link>
+
+                                    <Link
+                                    style={{
+                                        marginRight:"15px",
+                                        marginLeft:"15px",
+                                        textDecoration:"none"}}
+                                    onClick={e => deleteHandler(result._id)}
+                                    to="/home">&#128465;
+                                    </Link>
+                                </div>
+
+
 
                             </div>
                             )

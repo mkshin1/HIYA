@@ -9,14 +9,17 @@ import "../PostDetail.css"
 const PostDetail = (props) => {
   const {id} = props;
   const [post, setPost] = useState({});
-  const [allPosts, setAllPosts] = useState([])
-  const [comment, setComment] = useState('')
+  const [allPosts, setAllPosts] = useState([]);
+  const [comment, setComment] = useState('');
+  const [activeUser, setActiveUser] = useState(false);
+
 
   useEffect(() => {
     axios.get("http://localhost:8000/api/post/" + id)
     .then(res => {
-      // console.log("From Use Effect ", res.data)
+      console.log("From Use Effect ", res.data)
       setPost(res.data)
+      // console.log('Post within useEffect: ', post);
     })
     .catch(err => console.log(err))
   }, [post.likes])
@@ -49,6 +52,7 @@ const PostDetail = (props) => {
     .then(res => {
       setPost({
         ...post,
+        creator: localStorage.getItem("userFirstName") + " " + localStorage.getItem('userLastNameInitial'),
         comments: [
           ...post.comments,
           res.data
@@ -107,12 +111,14 @@ const PostDetail = (props) => {
               <div className="single-post">
                 <p>Comments:</p>
                 <form onSubmit={(e) => addComment(e)}>
+                  <input type="hidden" value="" />
                   <textarea onChange={e => setComment(e.target.value)} value={comment} placeholder="Leave a comment ..." />
                   <input type="submit" value="Add Comment"/>
                 </form>
               </div>
                 {post.comments.map((comment, idx) => {
                   return (<div key={idx} className="single-post">
+                    <p>{post.author}</p>
                     <p>{comment.body}</p>
                   </div>)
                 })}

@@ -9,10 +9,3 @@ module.exports.authenticate = (req, res, next) => {
         res.status(401).json({message: "Unauthorized"});
     }
 }
-//     if (err) { 
-//       res.status(401).json({verified: false});
-//     } else {
-//       next();
-//     }
-//   });
-// }

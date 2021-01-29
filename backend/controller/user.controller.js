@@ -16,6 +16,8 @@ module.exports.findOneUser = (req, res) => {
 }
 
 module.exports.registerUser = (req, res) => {
+    // const existingEmailMessage = "Oops! Email already exists."
+
     User.create(req.body)
     // console.log('req.body: ', req.body)
     .then(user => {
@@ -33,11 +35,14 @@ module.exports.registerUser = (req, res) => {
     .catch(err => {
         if (err.errors) {
             res.status(400).json(err)
+            console.log('this is from register user error')
         } else {
-            res.status(400).json({
-                message: err.message,
-                // err.message
-            })
+            res.status(400).json(
+            // console.log("Error mesage from else catch ", err.message)
+            {
+                message: "Oops! Email already exists.",
+            }
+            )
         }
     })
 }
@@ -53,6 +58,7 @@ module.exports.loginUser = async (req, res) => {
 
     const errorMessage = "Oops! Email or password is incorrect.";
 
+
     try {
         // console.log('At the top of Log In: ', errorMessage)
         const user = await User.findOne({email: req.body.email});
@@ -66,7 +72,11 @@ module.exports.loginUser = async (req, res) => {
             console.log("Password incorrect for: " + req.body.email);
             throw new Error(errorMessage);
         }
-        // console.log('Here! ', errorMessage)
+        // if (user.email) {
+        //     throw new Error(existingEmailMessage);
+        //     console.log('Email already exists ')
+        // }
+
         const userToken = jwt.sign({
             id: user._id
         }, process.env.SECRET_KEY);
