@@ -47,7 +47,13 @@ const PostDetail = (props) => {
       body: comment
     })
     .then(res => {
-      console.log('Added a comment to this post')
+      setPost({
+        ...post,
+        comments: [
+          ...post.comments,
+          res.data
+        ]
+      })
     })
     .catch(err => console.error(err))
   }
@@ -100,8 +106,8 @@ const PostDetail = (props) => {
             <div className="post-comments">
               <div className="single-post">
                 <p>Comments:</p>
-                <form onSubmit={(e) => addComment(post._id)}>
-                  <textarea onChange={(e) => setComment(e.target.value)} defaultValue="Leave a comment ..." />
+                <form onSubmit={(e) => addComment(e)}>
+                  <textarea onChange={e => setComment(e.target.value)} value={comment} placeholder="Leave a comment ..." />
                   <input type="submit" value="Add Comment"/>
                 </form>
               </div>
