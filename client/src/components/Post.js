@@ -5,6 +5,7 @@ import Button from "@material-ui/core/Button"
 import FormControl from '@material-ui/core/FormControl'
 import InputLabel from "@material-ui/core/InputLabel"
 import Input from "@material-ui/core/Input"
+import FavoriteBorder from '@material-ui/icons/FavoriteBorder';
 import axios from "axios"
 
 
@@ -70,6 +71,15 @@ function Post() {
             .catch(err => console.log(err))
     }
 
+    const likePost = (id) => {
+        axios.post(`http://localhost:8000/api/post/${id}/likes`)
+        .then(res => {
+            console.log('Successfully liked a post from dashboard', res.data)
+            setPost(res.data)
+        })
+        .catch(err => console.error(err))
+
+    }
 
     return (
         <div className="post">
@@ -79,7 +89,7 @@ function Post() {
                     <Input
                     onChange={e => setTitle(e.target.value)}
                     style={{marginBottom: "10px"}}
-                    placeholder="Whats the title of your post?"
+                    placeholder="What's the title of your post?"
                     value={title}
                     style={{
                         padding: "20px",
@@ -120,7 +130,7 @@ function Post() {
 
                     onChange={e => setImg(e.target.value)}
                     placeholder="Want to share an image?"
-                    style={{marginLeft: "380px"}}
+                    style={{marginLeft: "380px", width: "230px"}}
                     ></Input>
 
                     {/* <button onClick={ submitHandler }>Post</button> */}
@@ -159,6 +169,13 @@ function Post() {
                                 onClick={e => navigate(`/post/${result._id}`)}
                                 style={{wordWrap:"break-word"}}>{result.title}
                                 </p>
+
+                                {/* Like Button  */}
+                                <FavoriteBorder className="heart-icon"
+                                    onClick={(e) => likePost(result._id)}>
+
+                                </FavoriteBorder>
+                                {result.likes}
 
                                 <Link
                                 style={{marginRight:"10px"}}
