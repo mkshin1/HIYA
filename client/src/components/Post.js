@@ -18,8 +18,8 @@ function Post() {
     const [results, setResults] = useState([])
     const [img, setImg] = useState("")
 
-    
-    
+
+
     // const buttonStyle = {
     //     position:"relative",
     //     top: "200px",
@@ -33,11 +33,16 @@ function Post() {
     }, [results])
 
     const submitHandler = e => {
+        const creatorName = localStorage.getItem("userFirstName") + " " + localStorage.getItem('userLastNameInitial');
+        console.log('creator name: ', creatorName)
+
         e.preventDefault()
         axios.post("http://localhost:8000/api/post/add", {
             title: title,
             body:post,
-            imageUrl:img
+            imageUrl:img,
+            author: localStorage.getItem("userID"),
+            creator: localStorage.getItem("userFirstName") + " " + localStorage.getItem('userLastNameInitial')
         })
         .then(() => navigate("/home"))
         .catch(err => {
@@ -68,14 +73,14 @@ function Post() {
 
     return (
         <div className="post">
-                    <div className="post-form"> 
+                    <div className="post-form">
                     {/* <div className="title" style={{position:"relative", bottom:"350px", left: "205px"}}> */}
                     {/* <InputLabel>Title</InputLabel> */}
-                    <Input 
-                    onChange={e => setTitle(e.target.value)} 
-                    style={{marginBottom: "10px"}}  
+                    <Input
+                    onChange={e => setTitle(e.target.value)}
+                    style={{marginBottom: "10px"}}
                     placeholder="Whats the title of your post?"
-                    value={title} 
+                    value={title}
                     style={{
                         padding: "20px",
                         display: "flex",
@@ -86,9 +91,9 @@ function Post() {
                         width: "90%",
                     }}/>
                     {/* <Input  onChange={e => setTitle(e.target.value)} style={{marginBottom: "10px"}} placeholder="Enter Image Url"/> */}
-                    
+
                     </div>
-            
+
                     <TextField
                     className="textfield"
                     // label="Make a Post"
@@ -113,13 +118,13 @@ function Post() {
 
                     <Input
 
-                    onChange={e => setImg(e.target.value)} 
-                    placeholder="Want to share an image?" 
+                    onChange={e => setImg(e.target.value)}
+                    placeholder="Want to share an image?"
                     style={{marginLeft: "380px"}}
                     ></Input>
 
                     {/* <button onClick={ submitHandler }>Post</button> */}
-                    <Button 
+                    <Button
                     className="post-button"
                     variant="contained"
                     color="primary"
@@ -139,36 +144,38 @@ function Post() {
                     {
                         results.map((result, idx) => {
                             return (
-                            <div 
-                            key={idx} 
-                            className="eachPost" 
+                            <div
+                            key={idx}
+                            className="eachPost"
                             >
-                                <Link 
-                                style={{marginRight: "20px"}} 
+                                <Link
+                                style={{marginRight: "20px"}}
                                 to="/">&#128077;
                                 </Link>
 
-                                <p 
-                                onClick={e => navigate("/")} 
+                                <p>{result.creator}</p>
+
+                                <p
+                                onClick={e => navigate(`/post/${result._id}`)}
                                 style={{wordWrap:"break-word"}}>{result.title}
                                 </p>
 
-                                <Link 
-                                style={{marginRight:"10px"}} 
-                                to={`/api/post/${results._id}/update`}>&#x270E;
+                                <Link
+                                style={{marginRight:"10px"}}
+                                to={`/post/${result._id}/update`}>&#x270E;
                                 </Link>
 
-                                <Link 
+                                <Link
                                 onClick={e => deleteHandler(result._id)}
                                 to="/home">&#128465;
                                 </Link>
-                              
+
                             </div>
                             )
                         })
                     }
                     </div>
-            
+
         </div>
     )
 }

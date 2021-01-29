@@ -1,4 +1,6 @@
 import React from 'react';
+import axios from 'axios';
+import {Link, navigate} from '@reach/router';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import IconButton from '@material-ui/core/IconButton';
@@ -8,6 +10,7 @@ import { fade, makeStyles } from '@material-ui/core/styles';
 import MenuIcon from '@material-ui/icons/Menu';
 import SearchIcon from '@material-ui/icons/Search';
 import Button from "@material-ui/core/Button"
+
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -66,7 +69,17 @@ const useStyles = makeStyles((theme) => ({
 
 export default function SearchAppBar() {
   const classes = useStyles();
-  
+
+  // TODO: prevent logged out user from getting into home page, must log in first
+
+  const logOutUser = (e) => {
+    axios.get('http://localhost:8000/api/user/logout')
+      .then(res => {
+        console.log('User was successfully logged out!')
+        navigate('/')
+      })
+      .catch(err => console.log(err))
+  }
 
   return (
     <div className={classes.root}>
@@ -81,7 +94,7 @@ export default function SearchAppBar() {
             <MenuIcon />
           </IconButton> */}
           <img src="https://cutecdn.codingdojo.com/new_design_image/onsite_bootcamp/coding-dojo-bootcamp-icon.png" style={{width:"40px", marginRight: "20px" }}></img>
-          <Typography className={classes.title} variant="h6" noWrap 
+          <Typography className={classes.title} variant="h6" noWrap
           style={{fontWeight:"bold"}}
           >
             Hiya Dojo
@@ -98,7 +111,7 @@ export default function SearchAppBar() {
               }}
               inputProps={{ 'aria-label': 'search' }}
             /> */}
-            <Button style={{color:"white", fontWeight:"bold", backgroundColor:"none"}}>Sign Out</Button>
+            <Button style={{color:"white", fontWeight:"bold", backgroundColor:"none"}} onClick={logOutUser}>Sign Out</Button>
           </div>
         </Toolbar>
       </AppBar>

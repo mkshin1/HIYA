@@ -15,7 +15,7 @@ const Comment = require('../models/comment.model');
     Post.findOne({_id: req.params.id})
     .populate({
       path: "comments",
-      model: "Comment",
+      model: 'Comment',
     })
     .then(async onePost => {
       return res.json(onePost)
@@ -45,9 +45,9 @@ const Comment = require('../models/comment.model');
   }
 
   module.exports.likePost = (req, res) => {
-    console.log("request.params is an object!", request.params)
+    console.log("request.params is an object!", req.params)
     Post.findOneAndUpdate(
-      request.params.id,
+      {_id: req.params.id},
       {
         $inc: {
             likes: 1
@@ -67,6 +67,7 @@ module.exports.addComment = async (req, res) => {
   try {
     // Create the comment and get the comment object that was created
     const comment = await Comment.create(req.body)
+    console.log('Comment from controller: ', comment)
 
     // Get the post by ID from the req.params
     let post = await Post.findById(req.params.id).exec()
@@ -78,6 +79,7 @@ module.exports.addComment = async (req, res) => {
     // If no errors, return status 200 and the comment object
     res.status(200).json(comment)
   } catch (error) {
+    console.log('Error Comment from controller: ', error)
     // If any errors in the block above, status 400 and the error object
     res.status(400).json(error)
   }
