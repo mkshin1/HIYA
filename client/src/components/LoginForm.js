@@ -67,11 +67,11 @@ const LoginForm = (props) => {
       <form onSubmit={handleSubmit} className="login-form-smaller-div">
         <p>
           {/* <label>Email:</label> */}
-          <input type="text" className="registerForm-inputField" placeholder="Email Address" value={user.email} onChange={ (e) => changeUserLogin("email", e.target.value) } />
+          <input type="text" className="registerForm-inputField" stye={{fontFamily: "Century-Gothic"}} placeholder="Email Address" value={user.email} onChange={ (e) => changeUserLogin("email", e.target.value) } />
         </p>
         <p>
           {/* <label>Password:</label> */}
-          <input type="text" className="registerForm-inputField" placeholder="Password" value={user.password} onChange={ (e) => changeUserLogin("password", e.target.value) } />
+          <input type="password" className="registerForm-inputField" placeholder="Password" value={user.password} onChange={ (e) => changeUserLogin("password", e.target.value) } />
         </p>
         <button className="login-btn" type="submit">Log In</button>
 

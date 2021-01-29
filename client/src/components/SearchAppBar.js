@@ -94,8 +94,8 @@ export default function SearchAppBar() {
             <MenuIcon />
           </IconButton> */}
           <img src="https://cutecdn.codingdojo.com/new_design_image/onsite_bootcamp/coding-dojo-bootcamp-icon.png" style={{width:"40px", marginRight: "20px" }}></img>
-          <Typography className={classes.title} variant="h6" noWrap
-          style={{fontWeight:"bold"}}
+          <Typography className={classes.title} variant="h5" noWrap
+          style={{fontWeight:"bold", fontFamily: "Century Gothic"}}
           >
             Hiya Dojo
           </Typography>
@@ -111,7 +111,12 @@ export default function SearchAppBar() {
               }}
               inputProps={{ 'aria-label': 'search' }}
             /> */}
-            <Button style={{color:"white", fontWeight:"bold", backgroundColor:"none"}} onClick={logOutUser}>Sign Out</Button>
+            <Button style={{
+              color:"white",
+              fontWeight:"bold",
+              backgroundColor:"none",
+              fontFamily: "Century Gothic"
+            }} onClick={logOutUser}>Sign Out</Button>
           </div>
         </Toolbar>
       </AppBar>

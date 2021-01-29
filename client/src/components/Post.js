@@ -107,7 +107,7 @@ function Post() {
                     {/* <InputLabel>Title</InputLabel> */}
                     <Input
                     onChange={e => setTitle(e.target.value)}
-                    style={{marginBottom: "10px"}}
+                    // style={{marginBottom: "10px", fontFamily: "Century Gothic"}}
                     placeholder="What's the title of your post?"
                     value={title}
                     style={{
@@ -118,6 +118,8 @@ function Post() {
                         fontSize: "20px",
                         border: "none",
                         width: "90%",
+                        marginBottom: "10px",
+                        fontFamily: "Century Gothic"
                     }}/>
                     {/* <Input  onChange={e => setTitle(e.target.value)} style={{marginBottom: "10px"}} placeholder="Enter Image Url"/> */}
 
@@ -150,7 +152,7 @@ function Post() {
                     onChange={e => setImg(e.target.value)}
                     placeholder="Want to share an image?"
                     value={img}
-                    style={{marginLeft: "380px", width: "230px"}}
+                    style={{marginLeft: "380px", width: "230px", fontFamily: "Century Gothic"}}
                     ></Input>
 
                     {/* <button onClick={ submitHandler }>Post</button> */}
@@ -190,7 +192,7 @@ function Post() {
 
                                 <p
                                 onClick={e => navigate(`/post/${result._id}`)}
-                                style={{wordWrap:"break-word", marginLeft: "10px"}}>{result.title}
+                                style={{wordWrap:"break-word", marginLeft: "10px", fontWeight: "bold"}}>{result.title}
                                 </p>
 
                                 <img src={result.imageUrl} className="post-image-main"/>

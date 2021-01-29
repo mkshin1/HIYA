@@ -110,10 +110,10 @@ const PostDetail = (props) => {
             <div className="post-comments">
               <div className="single-post">
                 <p>Comments:</p>
-                <form onSubmit={(e) => addComment(e)}>
+                <form onSubmit={(e) => addComment(e)} className="comment-form">
                   <input type="hidden" value="" />
-                  <textarea onChange={e => setComment(e.target.value)} value={comment} placeholder="Leave a comment ..." />
-                  <input type="submit" value="Add Comment"/>
+                  <textarea className="comment-textbox" style={{rows: "30", cols: "40", fontFamily: "Century Gothic"}}onChange={e => setComment(e.target.value)} value={comment} placeholder="Leave a comment ..." />
+                  <input type="submit" value="Add Comment" className="comment-btn" />
                 </form>
               </div>
                 {post.comments.map((comment, idx) => {
