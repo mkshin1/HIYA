@@ -54,8 +54,11 @@ module.exports.loginUser = async (req, res) => {
     const errorMessage = "Oops! Email or password is incorrect.";
 
     try {
+        // console.log('At the top of Log In: ', errorMessage)
         const user = await User.findOne({email: req.body.email});
+        // console.log('Inside of Log In: ', errorMessage)
         if(user === null){
+            // console.log('Error Message from Log In: ', errorMessage)
             throw new Error(errorMessage);
         }
         const correctPassword = await bcrypt.compare(req.body.password, user.password);
@@ -63,15 +66,19 @@ module.exports.loginUser = async (req, res) => {
             console.log("Password incorrect for: " + req.body.email);
             throw new Error(errorMessage);
         }
+        // console.log('Here! ', errorMessage)
         const userToken = jwt.sign({
             id: user._id
         }, process.env.SECRET_KEY);
+        // console.log('Also Here! ', errorMessage)
         res
             .cookie("usertoken", userToken, {
                 httpOnly: true
             })
             .json({message: "Success!", user: user});
+            // console.log('Hereeeeee! ', errorMessage)
     } catch {
+        // console.log('Error Message from Catch in Log In: ', errorMessage)
         res.status(401).json({message: errorMessage});
     }
 }

@@ -40,6 +40,15 @@ header{
   align-items: center;
 }
 
+.login-form-smaller-div{
+  background: rgba( 248, 246, 250, 0.15 );
+  box-shadow: 0 8px 32px 0 rgb(109 118 236 / 37%);
+  backdrop-filter: blur( 9.5px );
+  -webkit-backdrop-filter: blur( 9.5px );
+  border-radius: 10px;
+  padding: 50px;
+}
+
 .loginForm-inputField{
   height: 45px;
   width: 150px;

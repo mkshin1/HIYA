@@ -33,22 +33,18 @@ const LoginForm = (props) => {
 
     axios.post('http://localhost:8000/api/user/login', user, {withCredentials: true})
       .then(res => {
-        console.log('Response!!')
-        console.log('User from Login: ', user)
+        console.log('User from Login: ', res.data.user)
+        localStorage.setItem('userID', res.data.user._id)
+        localStorage.setItem('userFirstName', res.data.user.firstName)
+        const lastNameInitial = res.data.user.lastName.charAt(0);
+        // console.log("lastNameInitial: ", lastNameInitial)
+        localStorage.setItem('userLastNameInitial', lastNameInitial)
         navigate('/home')
       })
       .catch(err => {
-        // console.log("ERRORS", JSON.stringify(err.response))
-        // console.log("ERRORS", err.response.data)
-        // const errorResponse = err.response.data;
-        // const errorArr = [];
-        // for (const key of Object.keys(errorResponse)) {
-        //   errorArr.push(errorResponse[key].message)
-        // }
-        // setErrors(errorArr);
-        // console.log(err.response.data)
         const errorArr = [];
         const errorData = err.response.data
+        console.log('Error Response: ', err.response)
         errorArr.push(errorData.message);
         if (errorData.errors) {
           const errorResponse = errorData.errors;
@@ -63,7 +59,7 @@ const LoginForm = (props) => {
 
   return(
     <div>
-      <form onSubmit={handleSubmit} className="login-form-div">
+      <form onSubmit={handleSubmit} className="login-form-smaller-div">
         <p>
           {/* <label>Email:</label> */}
           <input type="text" className="registerForm-inputField" placeholder="Email Address" value={user.email} onChange={ (e) => changeUserLogin("email", e.target.value) } />

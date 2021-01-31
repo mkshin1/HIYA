@@ -12,25 +12,26 @@ const PostSchema = new mongoose.Schema({
       3,
       "Post title must be 3 characters long"
     ]
-
-  }, 
+  },
   author: {
     type: mongoose.Schema.Types.ObjectID,
     ref: 'User', // will be JWT - tied to specific user
-  }, 
+  },
+  creator: {
+    type: String
+  },
   body: {
-    type: String, 
+    type: String,
     required: [
       true,
       "Post body is required."
     ],
   },
-  imageUrl: { 
+  imageUrl: {
     type: String,
     trim: true,
-    
-  }, 
 
+  },
   comments:{
     type: [mongoose.Schema.Types.ObjectID],
     ref: 'Comment' // tells Mongoose which model to populate documents from
@@ -39,11 +40,10 @@ const PostSchema = new mongoose.Schema({
     type: Date,
     default: Date.now
   },
-  meta: {
-    likes: {
-      type: Number,
-      default: 0
-    }
+  likes: {
+    type: Number,
+    default: 0
+
   }
 })
 

@@ -7,17 +7,19 @@ import "../PostDetail.css"
 
 // Display a specific post, include comments
 const PostDetail = (props) => {
+  const {id} = props;
   const [post, setPost] = useState({});
   const [allPosts, setAllPosts] = useState([])
+  const [comment, setComment] = useState('')
 
   useEffect(() => {
-    axios.get("http://localhost:8000/api/post/" + props.id)
+    axios.get("http://localhost:8000/api/post/" + id)
     .then(res => {
-      console.log(res.data)
+      // console.log("From Use Effect ", res.data)
       setPost(res.data)
     })
     .catch(err => console.log(err))
-  }, [])
+  }, [post.likes])
 
   const deletePost = (id) => {
     console.log('Post ID was clicked: ', id);
@@ -27,6 +29,33 @@ const PostDetail = (props) => {
         setAllPosts(filtered)
         navigate('/home')
       })
+  }
+
+  const likePost = (id) => {
+    axios.post(`http://localhost:8000/api/post/${id}/likes`)
+    .then(res => {
+      console.log('Successfully liked a post', res.data)
+      setPost(res.data)
+    })
+    .catch(err => console.error(err))
+
+  }
+
+  const addComment = (e) => {
+    e.preventDefault();
+    axios.post(`http://localhost:8000/api/post/${id}/addComment`, {
+      body: comment
+    })
+    .then(res => {
+      setPost({
+        ...post,
+        comments: [
+          ...post.comments,
+          res.data
+        ]
+      })
+    })
+    .catch(err => console.error(err))
   }
 
   return(
@@ -41,7 +70,7 @@ const PostDetail = (props) => {
         </div>
 
         <div className="post-main">
-          {/* <p>{post.author}</p> */}
+          <p>{post.creator}</p>
           <h3>{post.title}</h3>
           <h1>{post.body}</h1>
           <div className="post-image" >
@@ -52,8 +81,11 @@ const PostDetail = (props) => {
         </div>
 
         <div className="post-data">
-          <FavoriteBorder className="heart-icon"></FavoriteBorder>
-          {post.meta?.likes}
+          <FavoriteBorder className="heart-icon"
+            onClick={(e) => likePost(post._id)}>
+
+          </FavoriteBorder>
+          {post.likes}
           <div>
             <Link
               to={`/post/${post._id}/update`}
@@ -74,8 +106,12 @@ const PostDetail = (props) => {
             <div className="post-comments">
               <div className="single-post">
                 <p>Comments:</p>
+                <form onSubmit={(e) => addComment(e)}>
+                  <textarea onChange={e => setComment(e.target.value)} value={comment} placeholder="Leave a comment ..." />
+                  <input type="submit" value="Add Comment"/>
+                </form>
               </div>
-                {post.comments?.map((comment, idx) => {
+                {post.comments.map((comment, idx) => {
                   return (<div key={idx} className="single-post">
                     <p>{comment.body}</p>
                   </div>)
