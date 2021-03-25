@@ -70,10 +70,10 @@ function Post() {
             console.log(errorResponse)
             const errorArr = [];
             for (const key of Object.keys(errorResponse)) {
-              errorArr.push(errorResponse[key].message)
+                errorArr.push(errorResponse[key].message)
             }
             setErrors(errors)
-      })
+        })
 
         setPost("")
         setTitle("")
@@ -125,6 +125,7 @@ function Post() {
 
                     </div>
 
+
                     <TextField
                     className="textfield"
                     // label="Make a Post"
@@ -147,30 +148,33 @@ function Post() {
                     >
                     </TextField>
 
-                    <Input
+                    <div className="lower-post-div">
+                        <Input
+                            onChange={e => setImg(e.target.value)}
+                            placeholder="Want to share an image?"
+                            value={img}
+                            style={{marginLeft: "650px", width: "230px", fontFamily: "Century Gothic", paddingLeft: "15px"}}>
+                        </Input>
 
-                    onChange={e => setImg(e.target.value)}
-                    placeholder="Want to share an image?"
-                    value={img}
-                    style={{marginLeft: "380px", width: "230px", fontFamily: "Century Gothic"}}
-                    ></Input>
+                        {/* <button onClick={ submitHandler }>Post</button> */}
+                        <Button
+                        className="post-button"
+                        variant="contained"
+                        color="primary"
+                        // style={buttonStyle}
+                        style={{
+                            display: "flex",
+                            // flex: "1",
+                            marginLeft: "40px",
+                            fontSize: "15px",
+                            borderRadius: "30px",
+                            marginTop: "-30px",
+                            fontWeight: "bold"
+                        }}
+                        onClick={ submitHandler }
+                        >Post</Button>
+                    </div>
 
-                    {/* <button onClick={ submitHandler }>Post</button> */}
-                    <Button
-                    className="post-button"
-                    variant="contained"
-                    color="primary"
-                    // style={buttonStyle}
-                    style={{
-                        display: "flex",
-                        // flex: "1",
-                        marginLeft: "40px",
-                        fontSize: "15px",
-                        borderRadius: "30px",
-                        marginTop: "-30px"
-                    }}
-                    onClick={ submitHandler }
-                    >Post</Button>
 
                     <div className="feed">
                     {
@@ -180,10 +184,10 @@ function Post() {
                             key={idx}
                             className="eachPost"
                             >
-                                <Link
+                                {/* <Link
                                 style={{marginRight: "20px", marginLeft: "10px"}}
                                 to="/">&#128077;
-                                </Link>
+                                </Link> */}
 
                                 <p
                                 style={{marginLeft: "10px"}}>
@@ -192,17 +196,23 @@ function Post() {
 
                                 <p
                                 onClick={e => navigate(`/post/${result._id}`)}
-                                style={{wordWrap:"break-word", marginLeft: "10px", fontWeight: "bold"}}>{result.title}
+                                style={{
+                                    wordWrap:"break-word",
+                                    marginLeft: "10px",
+                                    fontWeight: "bold"
+                                }}>
+                                {result.title}
                                 </p>
 
-                                <img src={result.imageUrl} className="post-image-main"/>
+                                <img src={result.imageUrl} className="post-image-main" onClick={e => navigate(`/post/${result._id}`)}/>
 
                                 <div className="post-data-div">
                                     {/* Like Button  */}
                                     <FavoriteBorder
                                         className="heart-icon"
                                         style={{
-                                            marginLeft:"20px"}}
+                                            marginLeft:"20px"
+                                        }}
                                         onClick={(e) => likePost(result._id)}>
 
                                     </FavoriteBorder>
@@ -211,7 +221,9 @@ function Post() {
                                     <Link
                                     style={{
                                         marginRight:"15px",
-                                        marginLeft:"20px", textDecoration:"none"}}
+                                        marginLeft:"20px",
+                                        textDecoration:"none"
+                                    }}
                                     to={`/post/${result._id}/update`}>&#x270E;
                                     </Link>
 
@@ -219,7 +231,8 @@ function Post() {
                                     style={{
                                         marginRight:"15px",
                                         marginLeft:"15px",
-                                        textDecoration:"none"}}
+                                        textDecoration:"none"
+                                    }}
                                     onClick={e => deleteHandler(result._id)}
                                     to="/home">&#128465;
                                     </Link>

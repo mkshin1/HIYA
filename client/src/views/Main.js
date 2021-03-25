@@ -9,7 +9,7 @@ import "../Main.css"
 
 function Main() {
 
-    
+
     return (
         <div>
             <SearchAppBar />
@@ -20,10 +20,6 @@ function Main() {
                 <Post />
                 <Feed />
             </div>
-
-           
-
-
 
         </div>
     )

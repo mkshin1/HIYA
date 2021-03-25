@@ -100,7 +100,7 @@ const RegisterForm = (props) => {
         </p>
         <p>
           {/* <label>Password:</label> */}
-          <input type="text" className="registerForm-inputField" placeholder="Create Password" value={user.password} onChange={ (e) => changeUser("password", e.target.value) } />
+          <input type="password" className="registerForm-inputField" placeholder="Create Password" value={user.password} onChange={ (e) => changeUser("password", e.target.value) } />
         </p>
         <p>
           {/* <label>Confirm Password:</label> */}

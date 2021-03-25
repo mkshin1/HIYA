@@ -19,7 +19,9 @@ const Login = (props) => {
       <header onClick={ (e) => navigate("/")}>
         <div className="left-header"><h1>Hiya!!</h1></div>
           <div></div>
-          <div></div>
+        <div className="right-header">
+        <button className="login-btn" onClick={(e) => navigate("/register")}>Sign Up</button>
+        </div>
       </header>
 
       <div className="login-form-div">

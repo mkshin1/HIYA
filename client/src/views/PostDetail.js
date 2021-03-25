@@ -52,7 +52,8 @@ const PostDetail = (props) => {
     .then(res => {
       setPost({
         ...post,
-        creator: localStorage.getItem("userFirstName") + " " + localStorage.getItem('userLastNameInitial'),
+        author: localStorage.getItem("userFirstName") + " " + localStorage.getItem('userLastNameInitial'),
+        // author: localStorage.getItem("userFirstName"),
         comments: [
           ...post.comments,
           res.data
@@ -112,13 +113,13 @@ const PostDetail = (props) => {
                 <p>Comments:</p>
                 <form onSubmit={(e) => addComment(e)} className="comment-form">
                   <input type="hidden" value="" />
-                  <textarea className="comment-textbox" style={{rows: "30", cols: "40", fontFamily: "Century Gothic"}}onChange={e => setComment(e.target.value)} value={comment} placeholder="Leave a comment ..." />
+                  <textarea className="comment-textbox" style={{rows: "30", cols: "40", fontFamily: "Century Gothic"}}onChange={e => setComment(e.target.value)} placeholder="Leave a comment ..." />
                   <input type="submit" value="Add Comment" className="comment-btn" />
                 </form>
               </div>
                 {post.comments.map((comment, idx) => {
                   return (<div key={idx} className="single-post">
-                    <p>{post.author}</p>
+                    <p>Author: {post.author}</p>
                     <p>{comment.body}</p>
                   </div>)
                 })}
