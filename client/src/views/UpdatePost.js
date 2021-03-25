@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Link, navigate } from '@reach/router';
 import axios from 'axios';
+import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 import "../UpdatePost.css";
 
 // can only update if current user is logged in
@@ -39,9 +40,11 @@ const UpdatePost = (props) => {
 
   return(
     <div>
-      <div className="upper-left-div">
-        <p><Link to="/home" className="dashboard-link">Dashboard</Link></p>
-      </div>
+      <div className="post-top">
+          <div><ArrowBackIcon onClick={(e) => navigate("/home")} className="post-arrow" style={{ fontSize: 30, marginLeft: "20px" }}>X</ArrowBackIcon></div>
+          <div></div>
+          <div></div>
+        </div>
       <div className="update-form-container">
         <h1>Whoops!</h1>
         <form onSubmit={updatePost}>

@@ -73,6 +73,7 @@ export default function SearchAppBar() {
   // TODO: prevent logged out user from getting into home page, must log in first
 
   const logOutUser = (e) => {
+    console.log("in logout");
     axios.get('http://localhost:8000/api/user/logout')
       .then(res => {
         console.log('User was successfully logged out!')

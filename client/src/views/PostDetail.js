@@ -18,11 +18,13 @@ const PostDetail = (props) => {
     axios.get("http://localhost:8000/api/post/" + id)
     .then(res => {
       console.log("From Use Effect ", res.data)
+      // console.log(res.data.date[0]);
       setPost(res.data)
-      // console.log('Post within useEffect: ', post);
     })
     .catch(err => console.log(err))
   }, [post.likes])
+
+  // const dateFormat = post.date[5] + post.date[6] + post.date[7] + post.date[8] + post.date[9] + post.date[4] + post.date[0] + post.date[1] + post.date[2] + post.date[3];
 
   const deletePost = (id) => {
     console.log('Post ID was clicked: ', id);
@@ -62,6 +64,8 @@ const PostDetail = (props) => {
     })
     .catch(err => console.error(err))
   }
+
+// Delete comment from post
 
   return(
     <div>
