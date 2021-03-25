@@ -12,10 +12,8 @@
 }
 
 .post-top{
-  /* display: flex;
-  flex-direction: row;
-  justify-content: space-between; */
-  width: 50%
+  margin-top: 20px;
+  width: 50%;
 }
 
 .post-arrow{
@@ -27,6 +25,7 @@
   border: 1px solid #4125c0;
   padding-left: 18px;
   margin-bottom: 5px;
+  margin-top: 20px;
 }
 
 .post-data{
