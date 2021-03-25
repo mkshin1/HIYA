@@ -113,7 +113,8 @@ header{
   height: 50px;
   width: 300px;
   font-size: 16px;
-  font-family: "Century-Gothic";
+  font-family: "Century Gothic";
+  padding-left: 15px;
 }
 
 .errors{
