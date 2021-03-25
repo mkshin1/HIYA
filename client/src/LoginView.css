@@ -10,6 +10,11 @@ header{
     color: white;
   }
 
+  .left-header:hover {
+    color: #66eec5;
+    font-style: italic;
+  }
+
   .right-header{
     margin-right: 20px;
   }
@@ -41,6 +46,12 @@ header{
 }
 
 .login-form-smaller-div{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+
   background: rgba( 248, 246, 250, 0.15 );
   box-shadow: 0 8px 32px 0 rgb(109 118 236 / 37%);
   backdrop-filter: blur( 9.5px );
