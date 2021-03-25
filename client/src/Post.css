@@ -64,9 +64,9 @@
   border: none;
 }
 
-.feed {
+/* .feed {
   margin-top: 50px;
-}
+} */
 
 .eachPost > p {
   cursor: pointer;
