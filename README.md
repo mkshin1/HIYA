@@ -33,3 +33,13 @@ Add, edit and remove posts from users account.
 Like posts by clicking on the heart :white_heart:
 
 ![alt text](https://media.giphy.com/media/8LmoEgs0RxjAp7HnEh/giphy.gif)
+
+## Challenges and Notes
+- Logout is not functioning, could potentially be due to the usertoken cookie.
+- When looking at a specific post, date format is incorrectly displayed. Will need to alter post model's date attribute. 
+- Unable to display the name of a comment's author, currently displays the author's ID. Possible solution is change the comment model's creator attribute to include a type and reference. 
+- Hopeful additions to this project would be:
+  - Utilizing socket.io for real-time chat with users
+  - Navigational panel to access various pages
+  - Dark mode
+- This project was ambitious for my partner and myself. We wanted to achieve a successful fullstack application using Mongoose, Express, React and Node while also learning authorization and authentication. It was a steep learning curve, and with a bit of proper guidance, this application could reach it's full potential. 
