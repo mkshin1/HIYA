@@ -1,13 +1,15 @@
 # Hiya! 
 **Micro blogging and social media platform using MongoDB/Mongoose, Express, React, and Node.**
 
+This project was created during my time at Coding Dojo. 
+
 ## Overview
 - Create and login for users through use of MERN Authorization and Authentication
 - Utilized email vaidation through use of Regex.
 - Mongoose virtuals, used to confirm passwords without saving into MongoDB, and Middleware are added as another layer of validation.
 - To ensure passwords are secure, Bcrypt is enforced for hashing passwords. 
 - JSON Web Tokens are used to keep track of logged in users.
-- Add, update, like and remove blog posts through use Mongoose CRUD operations
+- Add, update, like and remove blog posts through use Mongoose CRUD operations.
 
 ### Login and Registration
 Users can register and login to personalized accounts.
