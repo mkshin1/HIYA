@@ -1,6 +1,10 @@
 # Hiya! 
 **Micro blogging and social media platform using MongoDB/Mongoose, Express, React, and Node.**
 
+**Front-End:** React, HTML, CSS, Material-UI
+
+**Back-End:** Express, MongoDB, Mongoose, Node
+
 This project was created during my time at Coding Dojo. 
 
 ## Overview
